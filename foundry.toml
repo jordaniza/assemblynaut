@@ -1,6 +1,20 @@
+# All profiles inherit from default
 [profile.default]
-src = "src"
-out = "out"
-libs = ["lib"]
+src = 'src'
+out = 'out'
+libs = ['lib']
+fs_permissions = [{ access = "read-write", path = "./"}]
+verbosity = 3
+ignored_error_codes = [
+    "license"
+]
 
-# See more config options https://github.com/foundry-rs/foundry/tree/master/config
+# Default fuzz settings below but can be increased if needed
+[fuzz]
+runs = 256
+max_test_rejects = 65536
+
+# Invariant tests revert more so good to have more runs if hardware allows
+# 10_000 runs takes about a min but unearths some good findings
+[invariant]
+runs = 10000
