@@ -8,7 +8,7 @@ Inspired by masochism and a deep desire to learn how to count in hexadecimal, th
 See the [test folder](./test) for solutions. I've actually never done the Ethernaut challenges "for real", so I am making the bold assumption they will be doable for me in Solidity.
 
 ### Easy
-- [x] Fallback: grabbing function selectors and lining up external calls. Fairly hard
+- [x] Fallback: grabbing function selectors and lining up external calls. Was a great introduction.
 - [ ] Fal1out: I know how to solve this, but the solution is "easier" than fallback so I might do a pure bytecode attempt later
 - [x] CoinFlip: very easy, even with assembly due to inbuilt opcodes
 - [x] Telephone: actually was quite tough as required creating a new contract from compiled bytecode, very educational
