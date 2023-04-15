@@ -19,7 +19,7 @@ contract ASMFallback is Test {
         vm.stopPrank();
     }
 
-    function testAttack() public attack {
+    function testAttackFallback() public attack {
         assembly {
             // initialize a pointer to free memory
             // the *value* of the pointer is at the 0x40 memory address

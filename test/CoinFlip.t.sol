@@ -66,10 +66,11 @@ contract ASMCoinFlip is Test {
         }
     }
 
-    function testAsmAttack() public {
+    function testAttackCoinflip() public {
         for (uint256 i = 0; i < 10; i++) {
             _attack();
             vm.roll(block.number + 1);
         }
+        assertEq(target.consecutiveWins(), 10);
     }
 }
