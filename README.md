@@ -4,6 +4,22 @@ Today's young kids have no respect for the traditions of old. Back in my day, we
 
 Inspired by masochism and a deep desire to learn how to count in hexadecimal, this repo is my attempt to solve the popular OpenZepplin [Ethernaut](https://ethernaut.openzeppelin.com/) challenges using only assembly.
 
+## Solved Challenges
+See the [test folder](./test) for solutions. I've actually never done the Ethernaut challenges "for real", so I am making the bold assumption they will be doable for me in Solidity.
+
+### Easy
+- [x] Fallback: grabbing function selectors and lining up external calls. Fairly hard
+- [ ] Fal1out: I know how to solve this, but the solution is "easier" than fallback so I might do a pure bytecode attempt later
+- [x] CoinFlip: very easy, even with assembly due to inbuilt opcodes
+- [x] Telephone: actually was quite tough as required creating a new contract from compiled bytecode, very educational
+- [ ] Token
+- [ ] Delegation
+- [ ] Force
+- [ ] Vault
+- [ ] King
+- [ ] Reentrancy
+- [ ] Elevator
+
 ## Running the repo
 
 Make sure you have foundry installed, run foundryup to get the latest version, and then run `forge install` to install the dependencies.
