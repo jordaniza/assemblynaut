@@ -16,7 +16,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [x] Telephone: actually was quite tough as required creating a new contract from compiled bytecode, very educational
 - [x] Token: straightforward given previous challenges
 - [ ] Delegation
-- [ ] Force
+- [x] Force: required loading constructor arguments to bytecode
 - [ ] Vault
 - [ ] King
 - [ ] Reentrancy
