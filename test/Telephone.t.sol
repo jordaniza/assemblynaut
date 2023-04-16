@@ -32,7 +32,8 @@ contract ASMTelephone is Test {
             let ptr := mload(0x40)
 
             // we know there are more than 32 bytes so the data in the slot is the length
-            let bytecode_length := sload(bytecode.slot)
+            // we need to divide by 2 to account 2 hex characters per byte
+            let bytecode_length := div(sload(bytecode.slot), 2)
 
             // we can get the start of the storage location of the data by hashing the slot
             mstore(ptr, bytecode.slot)
@@ -40,13 +41,13 @@ contract ASMTelephone is Test {
             // update the pointer after the hashed value
             ptr := add(ptr, 0x20)
 
-            // whole slots used by our dynamic bytearray are the array length / 64
-            let slots := div(bytecode_length, 0x40)
+            // whole slots used by our dynamic bytearray are the array length / 32
+            let slots := div(bytecode_length, 0x20)
 
             // we also add 1 for a partial slot if needed
-            // this would be the case if slots (from integer division) * 64 == bytecode_length
+            // this would be the case if slots (from integer division) * 32 bytes == bytecode_length
             // indicating no remainders
-            if not(eq(mul(0x40, slots), bytecode_length)) {
+            if not(eq(mul(0x20, slots), bytecode_length)) {
                 slots := add(slots, 1)
             }
 
