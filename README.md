@@ -15,7 +15,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [x] CoinFlip: very easy, even with assembly due to inbuilt opcodes
 - [x] Telephone: actually was quite tough as required creating a new contract from compiled bytecode, very educational
 - [x] Token: straightforward given previous challenges
-- [ ] Delegation
+- [x] Delegation: in assembly this is particularly easy to implement
 - [x] Force: required loading constructor arguments to bytecode
 - [ ] Vault
 - [ ] King
