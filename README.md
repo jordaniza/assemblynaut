@@ -12,12 +12,12 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 
 - [x] Fallback: grabbing function selectors and lining up external calls. Was a great introduction.
 - [ ] Fal1out: I know how to solve this, but the solution is "easier" than fallback so I might do a pure bytecode attempt later
-- [x] CoinFlip: very easy, even with assembly due to inbuilt opcodes
+- [x] CoinFlip: very easy, even with assembly due to inbuilt opcodes. TODO: call vm.roll inside assembly
 - [x] Telephone: actually was quite tough as required creating a new contract from compiled bytecode, very educational
 - [x] Token: straightforward given previous challenges
 - [x] Delegation: in assembly this is particularly easy to implement
 - [x] Force: required loading constructor arguments to bytecode
-- [ ] Vault
+- [ ] Vault: mostly done just need to grab the VM address from within ASM
 - [ ] King
 - [ ] Reentrancy
 - [ ] Elevator
