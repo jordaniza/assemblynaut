@@ -22,7 +22,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [ ] King
 - [ ] Reentrancy
 - [ ] Elevator
-- [ ] Preservation: solved in solidity. Should be a nice one to do in ASM.
+- [x] Preservation: reuses most of the same concepts so was fairly straightforward. Neat little assembly optimisation for the attack contract
 
 ## Running the repo
 

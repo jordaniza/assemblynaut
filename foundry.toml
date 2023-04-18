@@ -6,7 +6,7 @@ libs = ['lib']
 fs_permissions = [{ access = "read-write", path = "./"}]
 verbosity = 3
 ignored_error_codes = [
-    "license"
+    "license", 9302
 ]
 
 # Default fuzz settings below but can be increased if needed
