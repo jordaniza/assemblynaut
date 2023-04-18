@@ -16,21 +16,25 @@ contract ASMVault is Test {
     }
 
     function testASMVault() public {
-        // address internal constant VM_ADDRESS = address(uint160(uint256(keccak256("hevm cheat code"))));
-        address vmAddr = address(vm);
-        console2.log(vmAddr);
-        bytes4 load = VmSafe.load.selector;
-
         assembly {
             // we can't directly access private storage inside the EVM
             // but we can fetch it using any number of utilities for accessing storage slots.
             // In our case, we are making use of foundry's vm.load function, which we CAN
             // use inside our assembly call
-
             let ptr := mload(0x40)
 
-            // external selector is already encoded as bytes4
-            mstore(ptr, load)
+            // compute the vm address, defined as below:
+            // address internal constant VM_ADDRESS = address(uint160(uint256(keccak256("hevm cheat code"))));
+            mstore(ptr, "hevm cheat code")
+            // hash the string
+            let hevm_hash := keccak256(ptr, 0xf)
+            // we need to correctly encode the address format from bytes32
+            // this involves removing the least significant bits to go to uint160 (96bits == 0x60)
+            // then correctly encoding as an address (adding the left padding)
+            let hevm_addr := shr(0x60, shl(0x60, hevm_hash))
+
+            // load the selector and cast as bytes4
+            mstore(ptr, shl(0xe0, 0x667f9d70)) // load(address,uint256)
 
             // store our address that we want to load storage for
             mstore(add(ptr, 0x4), sload(target.slot))
@@ -42,7 +46,7 @@ contract ASMVault is Test {
             // TODO: is there a way to fetch the VM address in ASM
             let success := call(
                 gas(),
-                vmAddr,
+                hevm_addr,
                 0,
                 ptr,
                 0x44,

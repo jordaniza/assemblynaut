@@ -17,7 +17,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [x] Token: straightforward given previous challenges
 - [x] Delegation: in assembly this is particularly easy to implement
 - [x] Force: required loading constructor arguments to bytecode
-- [ ] Vault: mostly done just need to grab the VM address from within ASM
+- [x] Vault: pure asm implmentation including call to the forge cheatcodes
 - [ ] King
 - [ ] Reentrancy
 - [ ] Elevator
