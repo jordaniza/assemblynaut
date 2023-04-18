@@ -43,7 +43,6 @@ contract ASMVault is Test {
             mstore(add(ptr, 0x24), 1)
 
             // call the VM
-            // TODO: is there a way to fetch the VM address in ASM
             let success := call(
                 gas(),
                 hevm_addr,
