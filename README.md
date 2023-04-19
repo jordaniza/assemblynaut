@@ -19,7 +19,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [x] Delegation: in assembly this is particularly easy to implement
 - [x] Force: required loading constructor arguments to bytecode
 - [x] Vault: pure asm implmentation including call to the forge cheatcodes
-- [ ] King
+- [x] King: also straightforward
 - [ ] Reentrancy
 - [ ] Elevator
 - [x] Preservation: reuses most of the same concepts so was fairly straightforward. Neat little assembly optimisation for the attack contract
