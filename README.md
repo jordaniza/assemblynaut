@@ -13,7 +13,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [x] Fallback: grabbing function selectors and lining up external calls. Was a great introduction.
 - [ ] Fal1out: I know how to solve this, but the solution is "easier" than fallback so I might do a pure bytecode attempt later
 - [x] CoinFlip: very easy, even with assembly due to inbuilt opcodes.
-  - [ ] TODO: call vm.roll inside assembly
+  - [x] TODO: call vm.roll inside assembly
 - [x] Telephone: actually was quite tough as required creating a new contract from compiled bytecode, very educational
 - [x] Token: straightforward given previous challenges
 - [x] Delegation: in assembly this is particularly easy to implement
@@ -21,7 +21,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [x] Vault: pure asm implmentation including call to the forge cheatcodes
 - [x] King: also straightforward
 - [ ] Reentrancy
-- [ ] Elevator
+- [x] Elevator
 - [x] Preservation: reuses most of the same concepts so was fairly straightforward. Neat little assembly optimisation for the attack contract
 
 ## Running the repo
