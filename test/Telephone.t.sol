@@ -26,7 +26,7 @@ contract ASMTelephone is Test {
         vm.stopPrank();
     }
 
-    function testASMAttack() public attack {
+    function testASMAttackTelephone() public attack {
         assembly {
             // init fmp
             let ptr := mload(0x40)
@@ -53,7 +53,11 @@ contract ASMTelephone is Test {
 
             // begin the loop, saving the start location of the data in memory
             let startPtr := ptr
-            for { let i := 0 } lt(i, slots) { i := add(i, 1) } {
+            for {
+                let i := 0
+            } lt(i, slots) {
+                i := add(i, 1)
+            } {
                 // grab the data from the adjacent slot
                 let data := sload(add(bytecode_start, i))
                 // save the data
