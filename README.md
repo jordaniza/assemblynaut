@@ -10,8 +10,9 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 
 ### Challenges
 
+**Solved Assembly**
+
 - [x] Fallback: grabbing function selectors and lining up external calls. Was a great introduction.
-- [ ] Fal1out: I know how to solve this, but the solution is "easier" than fallback so I might do a pure bytecode attempt later
 - [x] CoinFlip: very easy, even with assembly due to inbuilt opcodes.
   - [x] TODO: call vm.roll inside assembly
 - [x] Telephone: actually was quite tough as required creating a new contract from compiled bytecode, very educational
@@ -20,9 +21,15 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [x] Force: required loading constructor arguments to bytecode
 - [x] Vault: pure asm implmentation including call to the forge cheatcodes
 - [x] King: also straightforward
-- [ ] Reentrancy
 - [x] Elevator
 - [x] Preservation: reuses most of the same concepts so was fairly straightforward. Neat little assembly optimisation for the attack contract
+- [x] Switch: nice little challenge that is a good test of calldata knowledge in assembly.
+
+**In Progress**
+
+- [ ] Fal1out: I know how to solve this, but the solution is "easier" than fallback so I might do a pure bytecode attempt later
+- [ ] Reentrancy: solived solidity
+- [ ] Good Samaritan: Solved solidity
 
 ## Running the repo
 
