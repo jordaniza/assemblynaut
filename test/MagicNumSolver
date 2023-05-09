@@ -1,0 +1,6 @@
+60 2a           // PUSH1 VALUE (0x2a = 42)
+60 1f           // PUSH1 MEMORY OFFSET (31 bytes)
+53              // MSTORE8 (offset, value)  
+60 20           // PUSH1 RETURN DATA SIZE (32 bytes)
+60 00           // PUSH1 MEMORY OFFSET
+f3              // RETURN (offset, size)

@@ -30,6 +30,8 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [ ] Fal1out: I know how to solve this, but the solution is "easier" than fallback so I might do a pure bytecode attempt later
 - [ ] Reentrancy: solived solidity
 - [ ] Good Samaritan: Solved solidity
+- [ ] Recovery: solved solidity
+- [ ] MagicNumber: solved using forge cheatcodes - we need additional EVM bytecode to create the contract
 
 ## Running the repo
 
