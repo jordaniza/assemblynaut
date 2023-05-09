@@ -7,9 +7,7 @@
 60 16                   // PUSH1 MEMORY OFFSET (22 bytes - offset for padding)
 f3                      // RETURN (offset, size)
 
-// the returned bytecode from the contract create is the runtime bytecode
-
-// details of the runtime bytecode:
+// the returned bytecode from the contract create is the runtime bytecode:
 
 60 2a                   // PUSH1 VALUE (0x2a = 42)
 60 1f                   // PUSH1 MEMORY OFFSET (31 bytes)

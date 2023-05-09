@@ -31,7 +31,8 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [ ] Reentrancy: solived solidity
 - [ ] Good Samaritan: Solved solidity
 - [ ] Recovery: solved solidity
-- [ ] MagicNumber: more or less solved
+- [ ] MagicNumber: more or less solved in ASM
+- [ ] PuzzleWallet: solved solidity
 
 ## Running the repo
 

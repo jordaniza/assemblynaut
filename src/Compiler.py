@@ -68,7 +68,7 @@ def write_bytecode(bytecode: str):
 
 
 compiled = (
-    Compiler("test/MagicNumSolver")
+    Compiler("test/MagicNumSolver.asm")
     .remove_empty_lines()
     .remove_comments()
     .remove_whitespace()
