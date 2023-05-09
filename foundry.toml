@@ -9,6 +9,9 @@ ignored_error_codes = [
     "license", 9302
 ]
 
+[fmt]
+line_length = 200
+
 # Default fuzz settings below but can be increased if needed
 [fuzz]
 runs = 256

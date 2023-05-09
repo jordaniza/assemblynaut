@@ -33,10 +33,7 @@ contract GoodSamaritan {
 
             // IDEA: try/catch in solidity is janky
         } catch (bytes memory err) {
-            if (
-                keccak256(abi.encodeWithSignature("NotEnoughBalance()")) ==
-                keccak256(err)
-            ) {
+            if (keccak256(abi.encodeWithSignature("NotEnoughBalance()")) == keccak256(err)) {
                 // send the coins left
                 wallet.transferRemainder(msg.sender);
                 return false;
@@ -55,7 +52,7 @@ contract Coin {
 
     constructor(address wallet_) {
         // one million coins for Good Samaritan initially
-        balances[wallet_] = 10**6;
+        balances[wallet_] = 10 ** 6;
     }
 
     function transfer(address dest_, uint256 amount_) external {

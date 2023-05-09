@@ -30,9 +30,7 @@ contract ASMDelegation is Test {
             // call the target
             let success := call(gas(), sload(target.slot), 0, ptr, 0x04, 0, 0)
 
-            if iszero(success) {
-                revert(0, 0)
-            }
+            if iszero(success) { revert(0, 0) }
         }
         assertEq(target.owner(), attacker);
     }

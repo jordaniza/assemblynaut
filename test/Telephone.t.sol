@@ -47,17 +47,11 @@ contract ASMTelephone is Test {
             // we also add 1 for a partial slot if needed
             // this would be the case if slots (from integer division) * 32 bytes == bytecode_length
             // indicating no remainders
-            if not(eq(mul(0x20, slots), bytecode_length)) {
-                slots := add(slots, 1)
-            }
+            if not(eq(mul(0x20, slots), bytecode_length)) { slots := add(slots, 1) }
 
             // begin the loop, saving the start location of the data in memory
             let startPtr := ptr
-            for {
-                let i := 0
-            } lt(i, slots) {
-                i := add(i, 1)
-            } {
+            for { let i := 0 } lt(i, slots) { i := add(i, 1) } {
                 // grab the data from the adjacent slot
                 let data := sload(add(bytecode_start, i))
                 // save the data
@@ -78,20 +72,19 @@ contract ASMTelephone is Test {
             // just after the 4byte selector add the target address
             mstore(add(ptr, 0x4), sload(target.slot))
 
-            let success := call(
-                gas(),
-                attackContract,
-                0,
-                ptr, // start reading from our ptr
-                add(0x4, 0x20), // args length - selector (bytes4) + data (bytes32)
-                0,
-                0
-            )
+            let success :=
+                call(
+                    gas(),
+                    attackContract,
+                    0,
+                    ptr, // start reading from our ptr
+                    add(0x4, 0x20), // args length - selector (bytes4) + data (bytes32)
+                    0,
+                    0
+                )
 
             // validate success
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
 
         // check success

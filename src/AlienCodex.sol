@@ -3,10 +3,7 @@ pragma solidity ^0.8.0;
 contract Ownable {
     address private _owner;
 
-    event OwnershipTransferred(
-        address indexed previousOwner,
-        address indexed newOwner
-    );
+    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
 
     constructor() {
         _owner = msg.sender;
@@ -35,10 +32,7 @@ contract Ownable {
     }
 
     function _transferOwnership(address newOwner) internal {
-        require(
-            newOwner != address(0),
-            "Ownable: new owner is the zero address"
-        );
+        require(newOwner != address(0), "Ownable: new owner is the zero address");
         emit OwnershipTransferred(_owner, newOwner);
         _owner = newOwner;
     }
@@ -68,7 +62,8 @@ contract AlienCodex is Ownable {
      *      This allows us to rebuild the exploit with the same compiler and also
      *      is another excuse to use assembly
      *      I have no idea if this is what was intended but it's been a good exercise nonetheless
-     **/
+     *
+     */
     function retract() public contacted {
         assembly {
             let ptr := mload(0x40)

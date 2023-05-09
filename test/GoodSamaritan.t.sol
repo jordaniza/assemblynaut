@@ -5,6 +5,7 @@ import "../src/GoodSamaritan.sol";
 
 contract AttackSamaritan is Test, INotifyable {
     GoodSamaritan public sam;
+
     error NotEnoughBalance();
 
     function setUp() public {

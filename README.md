@@ -31,7 +31,7 @@ See the [test folder](./test) for solutions. I've actually never done the Ethern
 - [ ] Reentrancy: solived solidity
 - [ ] Good Samaritan: Solved solidity
 - [ ] Recovery: solved solidity
-- [ ] MagicNumber: solved using forge cheatcodes - we need additional EVM bytecode to create the contract
+- [ ] MagicNumber: more or less solved
 
 ## Running the repo
 

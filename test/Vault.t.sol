@@ -6,6 +6,7 @@ import "../src/Vault.sol";
 
 contract ASMVault is Test {
     using stdStorage for StdStorage;
+
     StdStorage private sdstore;
 
     address public attacker = address(420);
@@ -43,19 +44,18 @@ contract ASMVault is Test {
             mstore(add(ptr, 0x24), 1)
 
             // call the VM
-            let success := call(
-                gas(),
-                hevm_addr,
-                0,
-                ptr,
-                0x44,
-                add(ptr, 0x44), // copy the result into memory after our existing data
-                0x20 // bytes32 result - we are assuming the data fits into a bytes32 slot
-            )
+            let success :=
+                call(
+                    gas(),
+                    hevm_addr,
+                    0,
+                    ptr,
+                    0x44,
+                    add(ptr, 0x44), // copy the result into memory after our existing data
+                    0x20 // bytes32 result - we are assuming the data fits into a bytes32 slot
+                )
 
-            if iszero(success) {
-                revert(0, 0)
-            }
+            if iszero(success) { revert(0, 0) }
 
             // move our pointer past the input data and grab the pwd
             ptr := add(ptr, 0x44)
@@ -72,9 +72,7 @@ contract ASMVault is Test {
             // call the target
             success := call(gas(), sload(target.slot), 0, ptr, 0x24, 0, 0)
 
-            if iszero(success) {
-                revert(0, 0)
-            }
+            if iszero(success) { revert(0, 0) }
         }
 
         assertEq(target.locked(), false);

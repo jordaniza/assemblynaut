@@ -61,19 +61,9 @@ contract ASMPreservation is Test {
             // execute the first call
             // calling setsecondtime with the timestamp as an address we control
             // will set the tiemzone1 lib
-            let success := call(
-                gas(),
-                sload(target.slot),
-                0,
-                sub(ptr, 0x24),
-                0x24,
-                0,
-                0
-            )
+            let success := call(gas(), sload(target.slot), 0, sub(ptr, 0x24), 0x24, 0, 0)
 
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
 
             // same again
             // string is length 21
@@ -95,19 +85,9 @@ contract ASMPreservation is Test {
 
             // execute the first call
             // now we can set the owner by just matching the storage slot
-            success := call(
-                gas(),
-                sload(target.slot),
-                0,
-                sub(ptr, 0x24),
-                0x24,
-                0,
-                0
-            )
+            success := call(gas(), sload(target.slot), 0, sub(ptr, 0x24), 0x24, 0, 0)
 
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
 
         assertEq(target.owner(), attacker);

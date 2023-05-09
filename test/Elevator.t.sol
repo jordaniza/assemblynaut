@@ -8,9 +8,7 @@ contract Boom is Building {
         assembly {
             // save the fact that function has been called before
             result := sload(0)
-            if eq(result, 0x0) {
-                sstore(0, 1)
-            }
+            if eq(result, 0x0) { sstore(0, 1) }
         }
     }
 
@@ -20,9 +18,7 @@ contract Boom is Building {
             mstore(ptr, shl(0xe0, 0xed9a7134)) // goTo(uint256)
             // call with uint256 == 0
             let success := call(gas(), _target, 0, ptr, 0x24, 0, 0)
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
     }
 }
@@ -57,17 +53,11 @@ contract ASMElevator is Test {
             // we also add 1 for a partial slot if needed
             // this would be the case if slots (from integer division) * 32 bytes == bytecode_length
             // indicating no remainders
-            if not(eq(mul(0x20, slots), bytecode_length)) {
-                slots := add(slots, 1)
-            }
+            if not(eq(mul(0x20, slots), bytecode_length)) { slots := add(slots, 1) }
 
             // begin the loop, saving the start location of the data in memory
             let startPtr := ptr
-            for {
-                let i := 0
-            } lt(i, slots) {
-                i := add(i, 1)
-            } {
+            for { let i := 0 } lt(i, slots) { i := add(i, 1) } {
                 // grab the data from the adjacent slot
                 let data := sload(add(bytecode_start, i))
                 // save the data
@@ -86,9 +76,7 @@ contract ASMElevator is Test {
 
             let success := call(gas(), boom, 0, ptr, 0x24, 0, 0)
 
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
         assertEq(target.top(), true);
     }

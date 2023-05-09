@@ -47,31 +47,31 @@ contract ASMFallback is Test {
             mstore(ptr, h)
 
             // first we make a contribution of 1 wei
-            let success := call(
-                gas(), // gas
-                targetAddress, // will be sending to target
-                1, // send 1 wei
-                ptr, // args offset - we can use our pointer
-                0x4, // args length - 4 bytes
-                0, // return offset - nothing
-                0 // return length - nothing
-            )
+            let success :=
+                call(
+                    gas(), // gas
+                    targetAddress, // will be sending to target
+                    1, // send 1 wei
+                    ptr, // args offset - we can use our pointer
+                    0x4, // args length - 4 bytes
+                    0, // return offset - nothing
+                    0 // return length - nothing
+                )
 
             // check we are successful
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
 
             // now we call fallback with one wei
-            success := call(
-                gas(), // gas
-                targetAddress, // will be sending to target
-                1, // send 1 wei
-                0, // args offset - nothing
-                0, // args length - nothing
-                0, // return offset - nothing
-                0 // return length - nothing
-            )
+            success :=
+                call(
+                    gas(), // gas
+                    targetAddress, // will be sending to target
+                    1, // send 1 wei
+                    0, // args offset - nothing
+                    0, // args length - nothing
+                    0, // return offset - nothing
+                    0 // return length - nothing
+                )
 
             // update the pointer
             ptr := add(ptr, 0x04)
@@ -90,20 +90,19 @@ contract ASMFallback is Test {
             mstore(ptr, w)
 
             // now we call withdraw
-            success := call(
-                gas(), // gas
-                targetAddress, // will be sending to target
-                0, // send no wei
-                ptr, // args offset - pointer
-                0x4, // args length - just the selector
-                0, // return offset - nothing
-                0 // return length - nothing
-            )
+            success :=
+                call(
+                    gas(), // gas
+                    targetAddress, // will be sending to target
+                    0, // send no wei
+                    ptr, // args offset - pointer
+                    0x4, // args length - just the selector
+                    0, // return offset - nothing
+                    0 // return length - nothing
+                )
 
             // check we are successful
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
 
         // assertions

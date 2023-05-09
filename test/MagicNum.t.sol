@@ -5,9 +5,8 @@ import "../src/MagicNum.sol";
 
 contract ASMMagicNum is Test {
     MagicNum public target;
-    // a super simple compiler can be written in MagicNumSolver file
-    // and written here with `python src/Compiler.py`
-    bytes solverBytecode = hex"602a601f5360206000f3";
+    // see MagicNumSolver for details
+    bytes solverBytecode = hex"69602a601f5360206000f3600052600a6016f3";
 
     function setUp() public {
         target = new MagicNum();
@@ -37,12 +36,10 @@ contract ASMMagicNum is Test {
 
         address solver = target.solver();
 
-        vm.etch(solver, solverBytecode);
-
         assertLe(solver.code.length, 10);
-        (, bytes memory data) = solver.call(
-            abi.encodeWithSignature("whatIsTheMeaningOfLife()")
-        );
+
+        // the signature is irrelevant here
+        (, bytes memory data) = solver.call(abi.encodeWithSignature("whatIsTheMeaningOfLife()"));
 
         uint256 decoded = abi.decode(data, (uint256));
 

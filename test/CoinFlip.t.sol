@@ -35,9 +35,7 @@ contract ASMCoinFlip is Test {
                 // call the VM
                 let success := call(gas(), hevm_addr, 0, _ptr, 0x24, 0, 0)
 
-                if iszero(success) {
-                    revert(0, 0)
-                }
+                if iszero(success) { revert(0, 0) }
 
                 // move the pointer to free memory
                 _ptr := add(_ptr, 0x24)
@@ -70,33 +68,30 @@ contract ASMCoinFlip is Test {
                 let expected := div(value, factor)
 
                 // this should be lte 1
-                if gt(expected, 1) {
-                    revert(0, 0)
-                }
+                if gt(expected, 1) { revert(0, 0) }
 
                 // store
                 mstore(add(_ptr, 0x4), expected)
 
                 // call the function
-                let success := call(
-                    gas(), // gas
-                    targetAddress, // will be sending to target
-                    0, // send 0 wei
-                    _ptr, // args offset - we can use our pointer
-                    0x24, // args length - selector (bytes4) + data (bytes32)
-                    0, // return offset - after our data
-                    0 // return length - bool
-                )
+                let success :=
+                    call(
+                        gas(), // gas
+                        targetAddress, // will be sending to target
+                        0, // send 0 wei
+                        _ptr, // args offset - we can use our pointer
+                        0x24, // args length - selector (bytes4) + data (bytes32)
+                        0, // return offset - after our data
+                        0 // return length - bool
+                    )
 
                 // check we are successful
-                if eq(success, 0) {
-                    revert(0, 0)
-                }
+                if eq(success, 0) { revert(0, 0) }
 
                 // move pointer to free memory
                 _ptr := add(_ptr, 0x24)
             }
-            
+
             // initialize a pointer to free memory
             let ptr := mload(0x40)
 
@@ -109,5 +104,4 @@ contract ASMCoinFlip is Test {
 
         assertEq(target.consecutiveWins(), 10);
     }
-
 }

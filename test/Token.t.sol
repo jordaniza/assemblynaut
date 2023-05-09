@@ -34,9 +34,7 @@ contract ASMToken is Test {
             mstore(add(ptr, 0x24), overFlowSupply)
 
             let success := call(gas(), sload(token.slot), 0, ptr, 0x44, 0, 0)
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
 
         assertGt(token.balanceOf(attacker), playerSupply);

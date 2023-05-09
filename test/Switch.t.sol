@@ -70,19 +70,9 @@ contract Attacktargetaritan is Test {
             dataLen := add(dataLen, 0x4)
 
             // call it:
-            let success := call(
-                gas(),
-                sload(target.slot),
-                0,
-                sub(ptr, dataLen),
-                dataLen,
-                0,
-                0
-            )
+            let success := call(gas(), sload(target.slot), 0, sub(ptr, dataLen), dataLen, 0, 0)
 
-            if eq(success, 0) {
-                revert(0, 0)
-            }
+            if eq(success, 0) { revert(0, 0) }
         }
         assertEq(target.switchOn(), true);
     }
